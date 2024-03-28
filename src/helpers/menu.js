@@ -1,23 +1,13 @@
 import {
   ADMIN_VERTICAL_MENU_ITEMS,
-  CLIENT_VERTICAL_MENU_ITEMS,
-  HORIZONTAL_MENU_ITEMS,
 } from "../assets/data/menu-items";
 
-const getClientVerticalMenuItems = () => {
-  // NOTE - You can fetch from server and return here as well
-  return CLIENT_VERTICAL_MENU_ITEMS;
-};
 
 const getAdminVerticalMenuItems = () => {
   // NOTE - You can fetch from server and return here as well
   return ADMIN_VERTICAL_MENU_ITEMS;
 };
 
-const getHorizontalMenuItems = () => {
-  // NOTE - You can fetch from server and return here as well
-  return HORIZONTAL_MENU_ITEMS;
-};
 
 const findAllParent = (menuItems, menuItem) => {
   let parents = [];
@@ -39,26 +29,13 @@ const getMenuItemFromURL = (items, url) => {
       if (foundItem) return foundItem;
     }
   } else {
-    if (items.url == url) return items;
+    if (items.url === url) return items;
     if (items.children != null) {
       for (const item of items.children) {
-        if (item.url == url) return item;
+        if (item.url === url) return item;
       }
     }
   }
-};
-
-// flatten the list of all nested routes
-const flattenRoutes = (routes) => {
-  let flatRoutes = [];
-
-  routes.forEach((item) => {
-    flatRoutes.push(item);
-    if (typeof item.children !== "undefined") {
-      flatRoutes = [...flatRoutes, ...flattenRoutes(item.children)];
-    }
-  });
-  return flatRoutes;
 };
 
 const findMenuItem = (menuItems, menuItemKey) => {
@@ -75,11 +52,8 @@ const findMenuItem = (menuItems, menuItemKey) => {
 };
 
 export {
-  getHorizontalMenuItems,
-  getClientVerticalMenuItems,
   getAdminVerticalMenuItems,
   findAllParent,
   findMenuItem,
-  flattenRoutes,
   getMenuItemFromURL,
 };

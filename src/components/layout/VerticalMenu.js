@@ -3,6 +3,10 @@ import { LuChevronDown, LuDot, LuLayoutGrid } from "react-icons/lu";
 import { findAllParent, findMenuItem, getMenuItemFromURL } from "../../helpers/menu";
 import { cn } from '../../utils/cn-merge'
 
+
+/**
+ * Renders the application menu
+ */
 const MenuItemWithChildren = ({
   item,
   linkClassName,
@@ -61,6 +65,7 @@ const MenuItemWithChildren = ({
                     })}
                   />
                 ) : (
+                  
                   <MenuItem
                     item={child}
                     className={cn("group", {
@@ -80,8 +85,7 @@ const MenuItemWithChildren = ({
     </li>
   );
 };
-
-const MenuItem = ({ item, className, linkClassName }) => {
+ const MenuItem = ({ item, className, linkClassName }) => {
   return (
     <li className={className}>
       <MenuItemLink item={item} className={linkClassName} />
@@ -103,10 +107,6 @@ const MenuItemLink = ({ item, className }) => {
     </a>
   );
 };
-
-/**
- * Renders the application menu
- */
 const VerticalMenu = ({ menuItems }) => {
   const [activeMenuItems, setActiveMenuItems] = useState([]);
 
@@ -148,29 +148,29 @@ const VerticalMenu = ({ menuItems }) => {
       {(menuItems ?? []).map((item) => {
         return (
           <Fragment key={item.key}>
-            {item.children ? (
-              <MenuItemWithChildren
-                item={item}
-                toggleMenu={toggleMenu}
-                className={"hs-accordion"}
-                activeMenuItems={activeMenuItems}
-                linkClassName={cn(
-                  "flex items-center gap-x-3.5 py-2 px-2.5 text-sm font-medium text-default-700 rounded-md hover:bg-default-100"
-                )}
-              />
-            ) : (
-              <MenuItem
-                item={item}
-                linkClassName={cn(
-                  "flex items-center gap-x-3.5 py-3 px-4 text-sm text-default-700 rounded-md hover:bg-default-100 group-[.active]:text-primary group-[.active]:bg-primary/10",
-                  { active: activeMenuItems.includes(item.key) }
-                )}
-                className={cn("group", {
-                  active: activeMenuItems?.includes(item.key),
-                })}
-              />
-            )}
-          </Fragment>
+          {item.children ? (
+            <MenuItemWithChildren
+              item={item}
+              toggleMenu={toggleMenu}
+              className={"hs-accordion"}
+              activeMenuItems={activeMenuItems}
+              linkClassName={cn(
+                "flex items-center gap-x-3.5 py-2 px-2.5 text-sm font-medium text-default-700 rounded-md hover:bg-default-100"
+              )}
+            />
+          ) : (
+            <MenuItem
+              item={item}
+              linkClassName={cn(
+                "flex items-center gap-x-3.5 py-3 px-4 text-sm text-default-700 rounded-md hover:bg-default-100 group-[.active]:text-primary group-[.active]:bg-primary/10",
+                { active: activeMenuItems.includes(item.key) }
+              )}
+              className={cn("group", {
+                active: activeMenuItems?.includes(item.key),
+              })}
+            />
+          )}
+        </Fragment>
         );
       })}
     </ul>

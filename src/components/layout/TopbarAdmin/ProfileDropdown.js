@@ -1,10 +1,4 @@
-import { Link } from "react-router-dom";
-import { Fragment } from "react";
-import { LuHome, LuLogOut, LuNewspaper, LuUser } from "react-icons/lu";
-import  cn  from "../../../utils/cn-merge";
 import  avatar1Img  from "../../../assets/images/avatar1.png";
-
-
 
 const ProfileDropdown = () => {
   return (
