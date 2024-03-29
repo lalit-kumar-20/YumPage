@@ -1,4 +1,4 @@
-import  avatar1Img  from "../../../assets/images/avatar1.png";
+import  avatar1Img  from "../../assets/images/avatar1.png";
 
 const ProfileDropdown = () => {
   return (
